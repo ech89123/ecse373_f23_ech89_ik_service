@@ -172,8 +172,16 @@ add_dependencies(ik_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED
 #   ${catkin_LIBRARIES}
 # )
 
- target_link_libraries(ik_client ${catkin_LIBRARIES})
- target_link_libraries(ik_service ${catkin_LIBRARIES})
+list(FILTER catkin_LIBRARIES EXCLUDE REGEX .*libur[3|5].*)
+
+# service
+ target_link_libraries(ik_client
+   ${catkin_LIBRARIES}
+ )
+ # client
+ target_link_libraries(ik_service
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##
